@@ -78,7 +78,8 @@ Base URL: https://grow-work.herokuapp.com/
 | required_skills  | array  | no       |
 | preferred_skills | array  | no       |
 | location         | string | no       |
-| type             | string | no       |
+| job_type         | string | no       |
+| apply_link       | string | no       |
 
 ## End Points
 
@@ -97,10 +98,28 @@ Base URL: https://grow-work.herokuapp.com/
 | GET    | `/profiles/companies/:id`     | yes            | Returns single company profile by id        |
 | GET    | `/profiles/professionals`     | yes            | Retruns all "professionals" profiles        |
 | GET    | `/profiles/professionals/:id` | yes            | Returns single "professional" profile by id |
-| POST   | `/account/profile`            | yes            | Returns newly added profile                 |
-| GET    | `/account/profile`            | yes            | Returns the current user's profile          |
-| PUT    | `/account/profile`            | yes            | Returns the user's newly updated profile    |
-| DELETE | `/account/profile`            | yes            | Deletes the user's profile                  |
 
+### Account Routes
 
+| Method | Endpoint                        | Token Required | Description                                 |
+| ------ | ------------------------------- | -------------- | ------------------------------------------  |
+| POST   | `/account/profile`              | yes            | Returns newly added profile                 |
+| GET    | `/account/profile`              | yes            | Returns the current user's profile          |
+| PUT    | `/account/profile`              | yes            | Returns the user's newly updated profile    |
+| DELETE | `/account/profile`              | yes            | Deletes the user's profile                  |
+| POST   | `/account/job-listing`          | yes            | Returns newly added job listing             |
+| GET    | `/account/job-listing`          | yes            | Returns the current user's job listings     |
+| GET    | `/account/job-listing:id`       | yes            | Returns single job listing by current user  |
+| PUT    | `/account/job-listing/:id`      | yes            | Returns user's newly updated job listing    |
+| DELETE | `/account/job-listing/:id`      | yes            | Deletes the user's job listing              |
+| GET    | `/account/saved`                | yes            | Returns the current user's job listings     |
+| DELETE | `/account/saved:id`             | yes            | Deletes the user's job listing              |
+
+### Job Listing Routes
+
+| Method | Endpoint                | Token Required | Description                           |
+| ------ | ------------------------| -------------- | ------------------------------------  |
+| GET    | `/job-listing`          | yes            | Returns all company profiles          |
+| GET    | `/job-listing/:id`      | yes            | Returns single company profile by id  |
+| POST   | `/job-listing/:id/save` | yes            | Saves single job listing              |
 
