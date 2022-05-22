@@ -67,6 +67,7 @@ Base URL: https://grow-work.herokuapp.com/
 | person_bio           | string | no       |
 | person_skills        | array  | no       |
 | person_links         | array  | no       |
+| saved_jobs           | array  | no       |
 
 ### Job Object
 
