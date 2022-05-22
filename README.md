@@ -49,29 +49,36 @@ Base URL: https://grow-work.herokuapp.com/
 
 ### Profiles
 
-| data          | type   | required |
-| ------------- | ------ | -------- |
-| user_id       | number | yes      |
-| company_name  | string | no       |
-| user_name     | string | no       |
-| location      | string | no       |
-| sector        | string | no       |
-| contact_email | string | no       |
-| phone         | string | no       |
-| blurb         | string | no       |
-| roles         | array  | no       |
-| jobs          | array  | no       |
-| skills        | array  | no       |
-| links         | array  | no       |
+| data                 | type   | required |
+| -------------------- | ------ | -------- |
+| user_id              | number | yes      |
+| company_name         | string | no       |
+| company_location     | string | no       |
+| company_sector       | string | no       |
+| company_email        | string | no       |
+| company_phone        | string | no       |
+| company_description  | string | no       |
+| company_job_listings | array  | no       |
+| company_links        | array  | no       |
+| person_name          | string | no       |
+| person_location      | string | no       |
+| person_email         | string | no       |
+| person_phone         | string | no       |
+| person_bio           | string | no       |
+| person_skills        | array  | no       |
+| person_links         | array  | no       |
 
 ### Job Object
 
-| data         | type   | required |
-| ------------ | ------ | -------- |
-| title        | string | no       |
-| description  | string | no       |
-| starting     | string | no       |
-| ending       | string | no       |
+| data             | type   | required |
+| ---------------- | ------ | -------- |
+| title            | string | no       |
+| description      | string | no       |
+| compensation     | string | no       |
+| required_skills  | array  | no       |
+| preferred_skills | array  | no       |
+| location         | string | no       |
+| type             | string | no       |
 
 ## End Points
 
@@ -84,16 +91,16 @@ Base URL: https://grow-work.herokuapp.com/
 
 ### Profiles Routes
 
-| Method | Endpoint                      | Token Required | Description                               |
-| ------ | ------------------------------| -------------- | ----------------------------------------  |
-| GET    | `/profiles/companies`         | yes            | Returns all company profiles              |
-| GET    | `/profiles/companies/:id`     | yes            | Returns single company profile by id      |
-| GET    | `/profiles/professionals`     | yes            | Retruns all "professionals" profiles      |
-| GET    | `/profiles/professionals/:id` | yes            | Returns single professional profile by id |
-| POST   | `/account/profile`            | yes            | Returns newly added profile               |
-| GET    | `/account/profile`            | yes            | Returns the current user's profile        |
-| PUT    | `/account/profile`            | yes            | Returns the user's newly updated profile  |
-| DELETE | `/account/profile`            | yes            | Deletes the user's profile                |
+| Method | Endpoint                      | Token Required | Description                                 |
+| ------ | ------------------------------| -------------- | ------------------------------------------  |
+| GET    | `/profiles/companies`         | yes            | Returns all company profiles                |
+| GET    | `/profiles/companies/:id`     | yes            | Returns single company profile by id        |
+| GET    | `/profiles/professionals`     | yes            | Retruns all "professionals" profiles        |
+| GET    | `/profiles/professionals/:id` | yes            | Returns single "professional" profile by id |
+| POST   | `/account/profile`            | yes            | Returns newly added profile                 |
+| GET    | `/account/profile`            | yes            | Returns the current user's profile          |
+| PUT    | `/account/profile`            | yes            | Returns the user's newly updated profile    |
+| DELETE | `/account/profile`            | yes            | Deletes the user's profile                  |
 
 
 
