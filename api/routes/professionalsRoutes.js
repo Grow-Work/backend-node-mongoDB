@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const mongoose = require('mongoose')
-const Professional = mongoose.model('professional_Profiles')
+const Professional = mongoose.model('Professional_Profiles')
 const requireAuth = require('../middleware/requireAuth')
 
 router.use(requireAuth)

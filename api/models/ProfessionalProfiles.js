@@ -1,13 +1,15 @@
 const mongoose = require('mongoose')
 
-const skillSchema = new mongoose.Schema({})
-const linkSchema = new mongoose.Schema({})
+const savedSchema = new mongoose.Schema({
+    job_id: String,
+    title: String,
+    company: String
+})
 
 const professionalProfileSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        unique: false,
         required: true
     },
     professional_name: String,
@@ -15,9 +17,9 @@ const professionalProfileSchema = new mongoose.Schema({
     professional_email: String,
     professional_phone: String,
     professional_bio: String,
-    professional_skills: [skillSchema],
-    professional_links: [linkSchema],
-    saved_jobs: []
+    professional_skills: [],
+    professional_links: [],
+    saved_jobs: [savedSchema]
 })
 
 mongoose.model('Professional_Profiles', professionalProfileSchema)

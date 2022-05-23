@@ -1,58 +1,14 @@
 const router = require("express").Router();
 const mongoose = require('mongoose')
 const Company = mongoose.model('Company_Profiles')
-const Professional = mongoose.model('professional_Profiles')
+const Professional = mongoose.model('Professional_Profiles')
 const requireAuth = require('../middleware/requireAuth')
 
 router.use(requireAuth)
 
-// router.get('/profile', async (req, res) => {
-//     try {
-//         if (req.user.account_type === "professional") {
-//             const professionalProfile = await professional.find({ userId: req.user._id})
-//             res.send(professionalProfile)
-//         } else if (req.user.account_type === "company") {
-//             const companyProfile = await Company.find({ userId: req.user._id})
-//             res.send(companyProfile)
-//         } else {
-//             res.send('No profile found')
-//         }
-//     } catch (error) {
-//         res.status(500).send(error.message)
-//     }
-// })
+//professional-profile CRUD routes
 
-router.get('/company-profile', async (req, res) => {
-    try {
-        const companyProfile = await Company.find({ userId: req.user._id})
-        res.send(companyProfile)
-    } catch (error) {
-        res.status(500).send(error.message)
-    }
-})
-
-router.get('/professional-profile', async (req, res) => {
-    try {
-        const companyProfile = await Professional.find({ userId: req.user._id})
-        res.send(companyProfile)
-    } catch (error) {
-        res.status(500).send(error.message)
-    }
-})
-
-router.post('/company-profile', async (req, res) => {
-    const {company_name, company_location, company_sector, company_email, company_phone, company_description, company_job_listings, company_links} = req.body
-
-    try {
-        const userProfile = new Company({ company_name, company_location, company_sector, company_email, company_phone, company_description, company_job_listings, company_links, userId: req.user._id})
-
-        await userProfile.save()
-        res.send(userProfile)
-    } catch (error) {
-        res.status(422).send(error.message)
-    }
-})
-
+//create:
 router.post('/professional-profile', async (req, res) => {
     const {professional_name, professional_location,professional_email, professional_phone, professional_bio, professional_skills, saved_jobs, professional_links} = req.body
 
@@ -67,18 +23,17 @@ router.post('/professional-profile', async (req, res) => {
     
 })
 
-router.put('/company-profile', async (req, res) => {
-    const {company_name, company_location, company_sector, company_email, company_phone, company_description, company_job_listings, company_links} = req.body
-
+//read:
+router.get('/professional-profile', async (req, res) => {
     try {
-        const companyProfile = await Company.find({ userId: req.user._id})
-        //update profile
+        const companyProfile = await Professional.find({ userId: req.user._id})
         res.send(companyProfile)
     } catch (error) {
         res.status(500).send(error.message)
     }
 })
 
+//update: 
 router.put('/professional-profile', async (req, res) => {
     const {professional_name, professional_location,professional_email, professional_phone, professional_bio, professional_skills, saved_jobs, professional_links} = req.body
 
@@ -91,6 +46,7 @@ router.put('/professional-profile', async (req, res) => {
     }
 })
 
+//delete: 
 router.delete('/professional-profile', async (req, res) => {
     try {
         const companyProfile = await Professional.find({ userId: req.user._id})
@@ -102,6 +58,46 @@ router.delete('/professional-profile', async (req, res) => {
     
 })
 
+//company-profile CRUD routes
+
+//create:
+router.post('/company-profile', async (req, res) => {
+    const {company_name, company_location, company_sector, company_email, company_phone, company_description, company_job_listings, company_links} = req.body
+
+    try {
+        const userProfile = new Company({ company_name, company_location, company_sector, company_email, company_phone, company_description, company_job_listings, company_links, userId: req.user._id})
+
+        await userProfile.save()
+        res.send(userProfile)
+    } catch (error) {
+        res.status(422).send(error.message)
+    }
+})
+
+//read:
+router.get('/company-profile', async (req, res) => {
+    try {
+        const companyProfile = await Company.find({ userId: req.user._id})
+        res.send(companyProfile)
+    } catch (error) {
+        res.status(500).send(error.message)
+    }
+})
+
+//update:
+router.put('/company-profile', async (req, res) => {
+    const {company_name, company_location, company_sector, company_email, company_phone, company_description, company_job_listings, company_links} = req.body
+
+    try {
+        const companyProfile = await Company.find({ userId: req.user._id})
+        //update profile
+        res.send(companyProfile)
+    } catch (error) {
+        res.status(500).send(error.message)
+    }
+})
+
+//delete:
 router.delete('/company-profile', async (req, res) => {
     try {
         const companyProfile = await Company.find({ userId: req.user._id})

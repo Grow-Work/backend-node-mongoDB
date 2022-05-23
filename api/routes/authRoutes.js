@@ -33,7 +33,7 @@ router.post('/signin', async (req, res) => {
 
     try {
         await user.comparePassword(password)
-        const token = jwt.sign({ userId: user._id }, 'shh')
+        const token = jwt.sign({ userId: user._id }, secret)
         res.send({ token, account_type })
     } catch(err) {
         return res.status(401).send({ error: 'invalid' })
