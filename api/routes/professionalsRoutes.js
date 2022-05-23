@@ -1,14 +1,13 @@
 const router = require("express").Router();
 const mongoose = require('mongoose')
-const User = mongoose.model('User')
+const professional = mongoose.model('professional_Profiles')
 const requireAuth = require('../middleware/requireAuth')
 
-const profile = mongoose.model('Profiles')
 
 router.use(requireAuth)
 
 router.get('/', async (req, res) => {
-    const profiles = await profile.find({})
+    const profiles = await professional.find({})
     res.send(profiles)
 })
 
@@ -16,7 +15,7 @@ router.post('/', async (req, res) => {
     const {company_name, user_name, location, sector, contact_email, phone, blurb, roles, jobs, skills, links} = req.body
 
     try {
-        const userProfile = new profile({ company_name, user_name, location, sector, contact_email, phone, blurb, roles, jobs, skills, links, userId: req.user._id})
+        const userProfile = new professional({ company_name, user_name, location, sector, contact_email, phone, blurb, roles, jobs, skills, links, userId: req.user._id})
         await userProfile.save()
         res.send(userProfile)
     } catch (err) {
@@ -26,8 +25,7 @@ router.post('/', async (req, res) => {
 })
 
 router.get('/user-profile', async (req, res) => {
-    const userProfile = await profile.find({ userId: req.user._id})
-    res.send(userProfile)
+    
 })
 
 router.get('/:id', async (req, res) => {

@@ -2,7 +2,9 @@ const express = require("express");
 const cors = require("cors");
 
 const authRouter = require("./routes/authRoutes");
-const profileRouter = require("./routes/profilesRoutes");
+const professionalsRouter = require("./routes/professionalsRoutes");
+const companyRouter = require("./routes/companyRoutes");
+const accountRouter = require("./routes/accountRoutes");
 
 const server = express();
 
@@ -11,7 +13,9 @@ server.use(express.json());
 server.use(cors());
 
 server.use("/auth", authRouter);
-server.use("/profiles", profileRouter);
+server.use("/professionals", professionalsRouter);
+server.use("/companies", companyRouter);
+server.use("/account", accountRouter);
 
 server.use((err, req, res, next) => { // eslint-disable-line
   res.status(err.status || 500).json({
