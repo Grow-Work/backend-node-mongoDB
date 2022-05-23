@@ -80,6 +80,7 @@ Base URL: https://grow-work.herokuapp.com/
 
 | data             | type   | required |
 | ---------------- | ------ | -------- |
+| user_id          | number | yes      |
 | title            | string | no       |
 | company          | string | no       |
 | description      | string | no       |
