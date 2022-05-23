@@ -81,6 +81,7 @@ Base URL: https://grow-work.herokuapp.com/
 | data             | type   | required |
 | ---------------- | ------ | -------- |
 | title            | string | no       |
+| company          | string | no       |
 | description      | string | no       |
 | compensation     | string | no       |
 | required_skills  | array  | no       |
