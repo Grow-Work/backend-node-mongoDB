@@ -24,10 +24,6 @@ router.post('/', async (req, res) => {
     
 })
 
-router.get('/user-profile', async (req, res) => {
-    
-})
-
 router.get('/:id', async (req, res) => {
     const singleProfile = await profile.find({ _id: req.params.id })
     res.send(singleProfile)
