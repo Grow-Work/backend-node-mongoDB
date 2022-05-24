@@ -1,7 +1,8 @@
 require('dotenv').config()
 require('./api/models/User')
-require('./api/models/ProfessionalProfiles')
-require('./api/models/CompanyProfiles')
+require('./api/models/ProfessionalProfile')
+require('./api/models/CompanyProfile')
+require('./api/models/Job')
 
 const server = require('./api/server')
 

@@ -16,3 +16,5 @@ const jobSchema = new mongoose.Schema({
     job_type: String,
     apply_link: String
 })
+
+mongoose.model('Job', jobSchema)

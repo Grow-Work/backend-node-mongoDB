@@ -33,9 +33,9 @@ This repo is subject to large changes as this project evolves. To learn more abo
 MONGODB_URL={your_key_here}
 JWT_SECRET={your_secret_here}
 
-## Back-End url
+## Base url
 
-Base URL: http://localhost:5000 - to be deployed
+Base URL: https://grow-work.herokuapp.com/
 
 ## Data Structures
 
@@ -43,35 +43,53 @@ Base URL: http://localhost:5000 - to be deployed
 
 | data         | type   | required |
 | ------------ | ------ | -------- |
-| id           | number | no       |
+| id           | number | yes      |
 | email        | string | yes      |
 | password     | string | yes      |
+| account_type | string | yes      |
 
-### Profiles
+### Company Profiles
 
-| data          | type   | required |
-| ------------- | ------ | -------- |
-| user_id       | number | yes      |
-| company_name  | string | no       |
-| user_name     | string | no       |
-| location      | string | no       |
-| sector        | string | no       |
-| contact_email | string | no       |
-| phone         | string | no       |
-| blurb         | string | no       |
-| roles         | array  | no       |
-| jobs          | array  | no       |
-| skills        | array  | no       |
-| links         | array  | no       |
+| data                 | type   | required |
+| -------------------- | ------ | -------- |
+| user_id              | number | yes      |
+| company_name         | string | no       |
+| company_location     | string | no       |
+| company_sector       | string | no       |
+| company_email        | string | no       |
+| company_phone        | string | no       |
+| company_description  | string | no       |
+| company_job_listings | array  | no       |
+| company_links        | array  | no       |
+
+### Professionals Profiles
+
+| data            | type   | required |
+| --------------- | ------ | -------- |
+| user_id         | number | yes      |
+| person_name     | string | no       |
+| person_location | string | no       |
+| person_email    | string | no       |
+| person_phone    | string | no       |
+| person_bio      | string | no       |
+| person_skills   | array  | no       |
+| person_links    | array  | no       |
+| saved_jobs      | array  | no       |
 
 ### Job Object
 
-| data         | type   | required |
-| ------------ | ------ | -------- |
-| title        | string | no       |
-| description  | string | no       |
-| starting     | string | no       |
-| ending       | string | no       |
+| data             | type   | required |
+| ---------------- | ------ | -------- |
+| user_id          | number | yes      |
+| title            | string | no       |
+| company          | string | no       |
+| description      | string | no       |
+| compensation     | string | no       |
+| required_skills  | array  | no       |
+| preferred_skills | array  | no       |
+| location         | string | no       |
+| job_type         | string | no       |
+| apply_link       | string | no       |
 
 ## End Points
 
@@ -82,18 +100,48 @@ Base URL: http://localhost:5000 - to be deployed
 | POST   | `/auth/signup` | no             | Registers new user and returns token       |
 | POST   | `/auth/signin` | no             | Signs in registered user and returns token |
 
-### Profiles Routes
+### Companies Routes
 
-| Method | Endpoint                      | Token Required | Description                               |
-| ------ | ------------------------------| -------------- | ----------------------------------------  |
-| GET    | `/profiles/companies`         | yes            | Returns all company profiles              |
-| GET    | `/profiles/companies/:id`     | yes            | Returns single company profile by id      |
-| GET    | `/profiles/professionals`     | yes            | Retruns all "professionals" profiles      |
-| GET    | `/profiles/professionals/:id` | yes            | Returns single professional profile by id |
-| POST   | `/account/profile`            | yes            | Returns newly added profile               |
-| GET    | `/account/profile`            | yes            | Returns the current user's profile        |
-| PUT    | `/account/profile`            | yes            | Returns the user's newly updated profile  |
-| DELETE | `/account/profile`            | yes            | Deletes the user's profile                |
+| Method | Endpoint         | Token Required | Description                          |
+| ------ | ---------------- | -------------- | ------------------------------------ |
+| GET    | `/companies`     | yes            | Returns all company profiles         |
+| GET    | `/companies/:id` | yes            | Returns single company profile by id |
 
+### Job Listing Routes
 
+| Method | Endpoint                | Token Required | Description                          |
+| ------ | ----------------------- | -------------- | ------------------------------------ |
+| GET    | `/job-listing`          | yes            | Returns all job postings             |
+| GET    | `/job-listing/:id`      | yes            | Returns single company profile by id |
+| POST   | `/job-listing/:id/save` | yes            | Saves single job listing             |
 
+### Professionals Routes
+
+| Method | Endpoint             | Token Required | Description                                 |
+| ------ | -------------------- | -------------- | ------------------------------------------- |
+| GET    | `/professionals`     | yes            | Retruns all "professionals" profiles        |
+| GET    | `/professionals/:id` | yes            | Returns single "professional" profile by id |
+
+### Account Company Routes
+
+| Method | Endpoint                           | Token Required | Description                                |
+| ------ | ---------------------------------- | -------------- | ------------------------------------------ |
+| POST   | `/account/company/profile`         | yes            | Returns newly added company profile        |
+| GET    | `/account/company/profile`         | yes            | Returns the current user's company profile |
+| PUT    | `/account/company/profile`         | yes            | Returns the user's newly updated profile   |
+| DELETE | `/account/company/profile`         | yes            | Deletes the user's profile                 |
+| POST   | `/account/company/job-listing`     | yes            | Returns newly added job listing            |
+| GET    | `/account/company/job-listing`     | yes            | Returns the current user's job listings    |
+| GET    | `/account/company/job-listing/:id` | yes            | Returns single job listing by current user |
+| PUT    | `/account/company/job-listing/:id` | yes            | Returns user's newly updated job listing   |
+| DELETE | `/account/company/job-listing/:id` | yes            | Deletes the user's job listing             |
+
+### Account Professional Routes
+
+| Method | Endpoint                              | Token Required | Description                              |
+| ------ | ------------------------------------- | -------------- | ---------------------------------------- |
+| POST   | `/account/professional/profile`       | yes            | Returns newly added person profile       |
+| GET    | `/account/professional/profile`       | yes            | Returns the current user's profile       |
+| PUT    | `/account/professional/profile`       | yes            | Returns the user's newly updated profile |
+| DELETE | `/account/professional/profile`       | yes            | Deletes the user's profile               |
+| DELETE | `/account/professional/saved-job/:id` | yes            | Deletes the user's job listing           |
