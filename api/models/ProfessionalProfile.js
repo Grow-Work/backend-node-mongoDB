@@ -12,7 +12,8 @@ const professionalProfileSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
-    professional_name: String,
+    professional_firstname: String,
+    professional_lastname: String,
     professional_location: String,
     professional_email: String,
     professional_phone: String,

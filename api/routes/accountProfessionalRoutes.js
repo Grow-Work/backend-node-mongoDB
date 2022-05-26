@@ -9,10 +9,10 @@ router.use(requireAuth)
 
 //create:
 router.post('/profile', async (req, res) => {
-    const {professional_name, professional_location,professional_email, professional_phone, professional_bio, professional_skills, saved_jobs, professional_links} = req.body
+    const {professional_firstname, professional_lastname, professional_location,professional_email, professional_phone, professional_bio, professional_skills, saved_jobs, professional_links} = req.body
 
     try {
-        const userProfile = new Professional({ professional_name, professional_location,professional_email, professional_phone, professional_bio, professional_skills, saved_jobs, professional_links, userId: req.user._id})
+        const userProfile = new Professional({ professional_firstname, professional_lastname, professional_location,professional_email, professional_phone, professional_bio, professional_skills, saved_jobs, professional_links, userId: req.user._id})
 
         await userProfile.save()
         res.send(userProfile)
@@ -46,10 +46,10 @@ router.put('/profile', async (req, res) => {
 })
 
 //delete: 
-router.delete('/profile', async (req, res) => {
+router.delete('/profile/:id', async (req, res) => {
     try {
-        const companyProfile = await Professional.find({ userId: req.user._id})
-        //delete found profile
+        const companyProfile = await Professional.deleteOne({ _id: req.params.id})
+        console.log(req.params)
         res.send("Profile Deleted")
     } catch (error) {
         res.status(500).send(error.message)
@@ -60,7 +60,7 @@ router.delete('/profile', async (req, res) => {
 router.delete('/saved-job/:id', async (req, res) => {
     try {
         //needs narrowing down to saved jobs
-        const companyProfile = await Professional.find({ userId: req.user._id})
+        const companyProfile = await Professional.deleteOne({ _id: req.params.id})
         //delete found job
         res.send("Save Deleted")
     } catch (error) {

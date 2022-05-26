@@ -46,10 +46,9 @@ router.put('/profile', async (req, res) => {
 })
 
 //delete:
-router.delete('/profile', async (req, res) => {
+router.delete('/profile/:id', async (req, res) => {
     try {
-        const companyProfile = await Company.find({ userId: req.user._id})
-        //delete found profile
+        const companyProfile = await Company.deleteOne({ _id: req.params.id})
         res.send("Profile Deleted")
     } catch (error) {
         res.status(500).send(error.message)
@@ -59,7 +58,7 @@ router.delete('/profile', async (req, res) => {
 //company job-listing CRUD operations
 
 //create:
-router.post('/job-listing', async (req, res) => {
+router.post('/job-listings', async (req, res) => {
     const { title, company, description, compensation, location, required_skills, preferred_skills, job_type, apply_link } = req.body
 
     try {
@@ -72,12 +71,24 @@ router.post('/job-listing', async (req, res) => {
     }
 })
 
+//read
+
+router.get('/job-listings', async (req, res) => {
+    const companyJobPostings = await Job.find({ userId: req.user._id })
+    res.send(companyJobPostings)
+})
+
+router.get('/job-listings/:id', async (req, res) => {
+    const singleJobPost = await Job.find({ _id: req.params.id })
+    res.send(singleJobPost)
+})
+
 //update
-router.post('/job-listing', async (req, res) => {
+router.put('/job-listings/:id', async (req, res) => {
     const { title, company, description, compensation, location, required_skills, preferred_skills, job_type, apply_link } = req.body
 
     try {
-        //const jobListing = new Job({ title, company, description, compensation, location, required_skills, preferred_skills, job_type, apply_link, userId: req.user._id })
+        // const jobListing = new Job({ title, company, description, compensation, location, required_skills, preferred_skills, job_type, apply_link, userId: req.user._id })
 
         //update data
         //res.send(jobListing)
@@ -86,13 +97,13 @@ router.post('/job-listing', async (req, res) => {
     }
 })
 
-router.delete('/job-listing', async (req, res) => {
+router.delete('/job-listings/:id', async (req, res) => {
     
     try {
-        //delete data
-        
+        const companyProfile = await Company.deleteOne({ _id: req.params.id})
+        res.send("Job Deleted")
     } catch (error) {
-        res.status(422).send(error.message)
+        res.status(500).send(error.message)
     }
 })
 

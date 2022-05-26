@@ -50,31 +50,31 @@ Base URL: https://grow-work.herokuapp.com/
 
 ### Company Profiles
 
-| data                 | type   | required |
-| -------------------- | ------ | -------- |
-| user_id              | number | yes      |
-| company_name         | string | no       |
-| company_location     | string | no       |
-| company_sector       | string | no       |
-| company_email        | string | no       |
-| company_phone        | string | no       |
-| company_description  | string | no       |
-| company_job_listings | array  | no       |
-| company_links        | array  | no       |
+| data                | type   | required |
+| ------------------- | ------ | -------- |
+| user_id             | number | yes      |
+| company_name        | string | no       |
+| company_location    | string | no       |
+| company_sector      | string | no       |
+| company_email       | string | no       |
+| company_phone       | string | no       |
+| company_description | string | no       |
+| company_links       | array  | no       |
 
 ### Professionals Profiles
 
-| data            | type   | required |
-| --------------- | ------ | -------- |
-| user_id         | number | yes      |
-| person_name     | string | no       |
-| person_location | string | no       |
-| person_email    | string | no       |
-| person_phone    | string | no       |
-| person_bio      | string | no       |
-| person_skills   | array  | no       |
-| person_links    | array  | no       |
-| saved_jobs      | array  | no       |
+| data             | type   | required |
+| ---------------- | ------ | -------- |
+| user_id          | number | yes      |
+| person_firstname | string | no       |
+| person_lastname  | string | no       |
+| person_location  | string | no       |
+| person_email     | string | no       |
+| person_phone     | string | no       |
+| person_bio       | string | no       |
+| person_skills    | array  | no       |
+| person_links     | array  | no       |
+| saved_jobs       | array  | no       |
 
 ### Job Object
 
@@ -124,17 +124,17 @@ Base URL: https://grow-work.herokuapp.com/
 
 ### Account Company Routes
 
-| Method | Endpoint                           | Token Required | Description                                |
-| ------ | ---------------------------------- | -------------- | ------------------------------------------ |
-| POST   | `/account/company/profile`         | yes            | Returns newly added company profile        |
-| GET    | `/account/company/profile`         | yes            | Returns the current user's company profile |
-| PUT    | `/account/company/profile`         | yes            | Returns the user's newly updated profile   |
-| DELETE | `/account/company/profile`         | yes            | Deletes the user's profile                 |
-| POST   | `/account/company/job-listing`     | yes            | Returns newly added job listing            |
-| GET    | `/account/company/job-listing`     | yes            | Returns the current user's job listings    |
-| GET    | `/account/company/job-listing/:id` | yes            | Returns single job listing by current user |
-| PUT    | `/account/company/job-listing/:id` | yes            | Returns user's newly updated job listing   |
-| DELETE | `/account/company/job-listing/:id` | yes            | Deletes the user's job listing             |
+| Method | Endpoint                            | Token Required | Description                                |
+| ------ | ----------------------------------- | -------------- | ------------------------------------------ |
+| POST   | `/account/company/profile`          | yes            | Returns newly added company profile        |
+| GET    | `/account/company/profile`          | yes            | Returns the current user's company profile |
+| PUT    | `/account/company/profile`          | yes            | Returns the user's newly updated profile   |
+| DELETE | `/account/company/profile`          | yes            | Deletes the user's profile                 |
+| POST   | `/account/company/job-listings`     | yes            | Returns newly added job listing            |
+| GET    | `/account/company/job-listings`     | yes            | Returns the current user's job listings    |
+| GET    | `/account/company/job-listings/:id` | yes            | Returns single job listing by current user |
+| PUT    | `/account/company/job-listings/:id` | yes            | Returns user's newly updated job listing   |
+| DELETE | `/account/company/job-listings/:id` | yes            | Deletes the user's job listing             |
 
 ### Account Professional Routes
 
