@@ -10,13 +10,13 @@ This repo is subject to large changes as this project evolves. To learn more abo
 
 ## Tech Stack - subject to change
 
-• MongoDB / Mongoose
+- MongoDB / Mongoose
 
-• Node / Express
+- Node / Express
 
-• JavaScript
+- Json webtokens
 
-• Json webtokens
+- Tests with Mocha
 
 ## Instalation and Starting
 
@@ -48,19 +48,6 @@ Base URL: https://grow-work.herokuapp.com/
 | password     | string | yes      |
 | account_type | string | yes      |
 
-### Company Profiles
-
-| data                | type   | required |
-| ------------------- | ------ | -------- |
-| user_id             | number | yes      |
-| company_name        | string | no       |
-| company_location    | string | no       |
-| company_sector      | string | no       |
-| company_email       | string | no       |
-| company_phone       | string | no       |
-| company_description | string | no       |
-| company_links       | array  | no       |
-
 ### Professionals Profiles
 
 | data             | type   | required |
@@ -75,6 +62,19 @@ Base URL: https://grow-work.herokuapp.com/
 | person_skills    | array  | no       |
 | person_links     | array  | no       |
 | saved_jobs       | array  | no       |
+
+### Company Profiles
+
+| data                | type   | required |
+| ------------------- | ------ | -------- |
+| user_id             | number | yes      |
+| company_name        | string | no       |
+| company_location    | string | no       |
+| company_sector      | string | no       |
+| company_email       | string | no       |
+| company_phone       | string | no       |
+| company_description | string | no       |
+| company_links       | array  | no       |
 
 ### Job Object
 
@@ -100,6 +100,13 @@ Base URL: https://grow-work.herokuapp.com/
 | POST   | `/auth/signup` | no             | Registers new user and returns token       |
 | POST   | `/auth/signin` | no             | Signs in registered user and returns token |
 
+### Professionals Routes
+
+| Method | Endpoint             | Token Required | Description                                 |
+| ------ | -------------------- | -------------- | ------------------------------------------- |
+| GET    | `/professionals`     | yes            | Retruns all "professionals" profiles        |
+| GET    | `/professionals/:id` | yes            | Returns single "professional" profile by id |
+
 ### Companies Routes
 
 | Method | Endpoint         | Token Required | Description                          |
@@ -109,18 +116,11 @@ Base URL: https://grow-work.herokuapp.com/
 
 ### Job Listing Routes
 
-| Method | Endpoint                | Token Required | Description                          |
-| ------ | ----------------------- | -------------- | ------------------------------------ |
-| GET    | `/job-listing`          | yes            | Returns all job postings             |
-| GET    | `/job-listing/:id`      | yes            | Returns single company profile by id |
-| POST   | `/job-listing/:id/save` | yes            | Saves single job listing             |
-
-### Professionals Routes
-
-| Method | Endpoint             | Token Required | Description                                 |
-| ------ | -------------------- | -------------- | ------------------------------------------- |
-| GET    | `/professionals`     | yes            | Retruns all "professionals" profiles        |
-| GET    | `/professionals/:id` | yes            | Returns single "professional" profile by id |
+| Method | Endpoint                | Token Required | Description                              |
+| ------ | ----------------------- | -------------- | ---------------------------------------- |
+| GET    | `/job-listing`          | yes            | Returns all job postings                 |
+| GET    | `/job-listing/:id`      | yes            | Returns single job listing by id         |
+| POST   | `/job-listing/:id/save` | yes            | Saves single job listing to user profile |
 
 ### Account Company Routes
 
@@ -138,10 +138,10 @@ Base URL: https://grow-work.herokuapp.com/
 
 ### Account Professional Routes
 
-| Method | Endpoint                              | Token Required | Description                              |
-| ------ | ------------------------------------- | -------------- | ---------------------------------------- |
-| POST   | `/account/professional/profile`       | yes            | Returns newly added person profile       |
-| GET    | `/account/professional/profile`       | yes            | Returns the current user's profile       |
-| PUT    | `/account/professional/profile`       | yes            | Returns the user's newly updated profile |
-| DELETE | `/account/professional/profile`       | yes            | Deletes the user's profile               |
-| DELETE | `/account/professional/saved-job/:id` | yes            | Deletes the user's job listing           |
+| Method | Endpoint                              | Token Required | Description                                |
+| ------ | ------------------------------------- | -------------- | ------------------------------------------ |
+| POST   | `/account/professional/profile`       | yes            | Returns newly added 'professional' profile |
+| GET    | `/account/professional/profile`       | yes            | Returns the current user's profile         |
+| PUT    | `/account/professional/profile`       | yes            | Returns the user's newly updated profile   |
+| DELETE | `/account/professional/profile`       | yes            | Deletes the user's profile                 |
+| DELETE | `/account/professional/saved-job/:id` | yes            | Deletes the user's saved job listing       |

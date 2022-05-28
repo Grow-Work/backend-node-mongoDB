@@ -2,11 +2,10 @@ const { describe } = require("mocha");
 const mongoose = require('mongoose')
 const Company = mongoose.model('Company_Profiles')
 const User = mongoose.model('User')
-const Job = mongoose.model('Job')
 const assert = require('assert')
 
 describe('Creating records', () => {
-    it('saves a company profile', async () => {
+    it('05 - saves a company profile', async () => {
         const testUser = new User({
             email: 'test@test.com',
             password: 'test',
@@ -42,13 +41,37 @@ describe('Reading company profile records', () => {
         await testCompanyProfile.save()
     })
 
-    it('finds added user profile', async () => {
+    it('06 - finds all profiles', async () => {
         let profiles = await Company.find()
-        assert(profiles[0]._id.toString() === testCompanyProfile._id.toString())
         assert(profiles.length === 1)
     })
 
-    it('finds user profile by userId', async () => {
+    it('07 - finds user profile by userId', async () => {
+        let profile = await Company.findOne({ userId: testUser._id })
+        assert(profile.company_name === 'Grow: Work')
+    })
+
+})
+
+describe('Updating company profile records', () => {
+
+    beforeEach(async() => {
+        testUser = new User({
+            email: 'test@test.com',
+            password: 'test',
+            account_type: 'test'
+            })
+        await testUser.save()
+
+        testCompanyProfile = new Company({
+            company_name: "Grow: Work",
+            company_location: "Kansas CIty, KS, USA",
+            userId: testUser._id
+            })
+        await testCompanyProfile.save()
+    })
+
+    it('08 - updates user profile by userId', async () => {
         let profile = await Company.findOne({ userId: testUser._id })
         assert(profile.company_name === 'Grow: Work')
     })
@@ -74,7 +97,7 @@ describe('Deleting users records', () => {
         await testCompanyProfile.save()
     })
 
-    it('deletes user profile by id', async () => {
+    it('09 - deletes user profile by id', async () => {
         let profile = await Company.deleteOne({ userId: testUser._id })
         let profiles = await Company.find()
         assert(profile.deletedCount === 1)
