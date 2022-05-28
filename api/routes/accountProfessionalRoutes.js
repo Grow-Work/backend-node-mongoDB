@@ -25,8 +25,8 @@ router.post('/profile', async (req, res) => {
 //read:
 router.get('/profile', async (req, res) => {
     try {
-        const companyProfile = await Professional.findOne({ userId: req.user._id})
-        res.send(companyProfile)
+        const newbProfile = await Professional.findOne({ userId: req.user._id})
+        res.send(newbProfile)
     } catch (error) {
         res.status(500).send(error.message)
     }
@@ -48,7 +48,7 @@ router.put('/profile', async (req, res) => {
 //delete: 
 router.delete('/profile/:id', async (req, res) => {
     try {
-        const companyProfile = await Professional.deleteOne({ _id: req.params.id})
+        const newbProfile = await Professional.deleteOne({ _id: req.params.id})
         console.log(req.params)
         res.send("Profile Deleted")
     } catch (error) {
@@ -56,12 +56,14 @@ router.delete('/profile/:id', async (req, res) => {
     }
 })
 
-//saved jobs routes - delete only
+//saved jobs routes
+
+//read
+
+//delete
 router.delete('/saved-job/:id', async (req, res) => {
     try {
-        //needs narrowing down to saved jobs
-        const companyProfile = await Professional.deleteOne({ _id: req.params.id})
-        //delete found job
+        const savedJob = await Professional.deleteOne({ _id: req.params.id})
         res.send("Save Deleted")
     } catch (error) {
         res.status(500).send(error.message)
