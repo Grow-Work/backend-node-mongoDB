@@ -68,6 +68,4 @@ router.delete('/saved-job/:id', async (req, res) => {
     }
 })
 
-
-
 module.exports = router
