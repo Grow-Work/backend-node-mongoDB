@@ -23,7 +23,8 @@ before((done) => {
 beforeEach((done) => {
   mongoose.connection.collections.users.drop(() => {});
   mongoose.connection.collections.company_profiles.drop(() => {});
-  mongoose.connection.collections.professional_profiles.drop(() => {
+  mongoose.connection.collections.professional_profiles.drop(() => {});
+  mongoose.connection.collections.jobs.drop(() => {
     // Ready to run the next test!
     done();
   });
