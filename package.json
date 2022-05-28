@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
-    "test": "mocha"
+    "test": "nodemon --exec \"mocha -R min\""
   },
   "keywords": [],
   "author": "",

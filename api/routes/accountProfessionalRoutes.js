@@ -25,7 +25,7 @@ router.post('/profile', async (req, res) => {
 //read:
 router.get('/profile', async (req, res) => {
     try {
-        const companyProfile = await Professional.find({ userId: req.user._id})
+        const companyProfile = await Professional.findOne({ userId: req.user._id})
         res.send(companyProfile)
     } catch (error) {
         res.status(500).send(error.message)
