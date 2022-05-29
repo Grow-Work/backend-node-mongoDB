@@ -11,8 +11,8 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-    const singleJobPost = await Job.findOne({ _id: req.params.id })
-    res.send(singleJobPost)
+    const job = await Job.findOne({_id: req.params.id})
+    res.send(job)
 })
 
 module.exports = router

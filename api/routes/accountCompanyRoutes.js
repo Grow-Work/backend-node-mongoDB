@@ -25,7 +25,7 @@ router.post('/profile', async (req, res) => {
 //read:
 router.get('/profile', async (req, res) => {
     try {
-        const profile = await Company.findOne({ userId: req.user._id})
+        const profile = await Company.findOne({userId: req.user._id})
         res.send(profile)
     } catch (error) {
         res.status(500).send(error.message)
@@ -36,25 +36,25 @@ router.get('/profile', async (req, res) => {
 router.put('/profile', async (req, res) => {
 
     try {
-        await Company.updateOne({ userId: req.user._id }, req.body)
-        let profile = await Company.findOne({ userId: req.user._id })
+        await Company.updateOne({userId: req.user._id}, req.body)
+        let profile = await Company.findOne({userId: req.user._id})
         res.send(profile)
     } catch (error) {
-        res.status(422).send(error.message)
+        res.status(500).send(error.message)
     }
 })
 
 //delete:
 router.delete('/profile', async (req, res) => {
     try {
-        const profile = await Company.deleteOne({ userId: req.user._id})
+        const profile = await Company.deleteOne({userId: req.user._id})
         res.send(`${profile.deletedCount} profile deleted`)
     } catch (error) {
         res.status(500).send(error.message)
     }
 })
 
-//company job-listing CRUD operations
+//company job-listings CRUD operations
 
 //create:
 router.post('/job-listings', async (req, res) => {
@@ -73,12 +73,12 @@ router.post('/job-listings', async (req, res) => {
 //read
 
 router.get('/job-listings', async (req, res) => {
-    const jobListing = await Job.find({ userId: req.user._id })
+    const jobListing = await Job.find({userId: req.user._id})
     res.send(jobListing)
 })
 
 router.get('/job-listings/:id', async (req, res) => {
-    const jobListing = await Job.findOne({ _id: req.params.id })
+    const jobListing = await Job.findOne({_id: req.params.id})
     res.send(jobListing)
 })
 
@@ -86,8 +86,8 @@ router.get('/job-listings/:id', async (req, res) => {
 router.put('/job-listings/:id', async (req, res) => {
 
     try {
-        await Job.updateOne({ _id: req.params.id }, req.body)
-        let jobListing = await Job.findOne({ _id: req.params.id })
+        await Job.updateOne({_id: req.params.id}, req.body)
+        let jobListing = await Job.findOne({_id: req.params.id})
         res.send(jobListing)
     } catch (error) {
         res.status(500).send(error.message)
@@ -97,7 +97,7 @@ router.put('/job-listings/:id', async (req, res) => {
 router.delete('/job-listings/:id', async (req, res) => {
     
     try {
-        const jobListing = await Job.deleteOne({ _id: req.params.id})
+        const jobListing = await Job.deleteOne({_id: req.params.id})
         res.send(`${jobListing.deletedCount} job listing deleted`)
     } catch (error) {
         res.status(500).send(error.message)

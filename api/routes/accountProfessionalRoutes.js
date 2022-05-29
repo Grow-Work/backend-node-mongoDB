@@ -17,7 +17,7 @@ router.post('/profile', async (req, res) => {
         await profile.save()
         res.send(profile)
     } catch (err) {
-        res.status(422).send(err.message)
+        res.status(500).send(err.message)
     }
     
 })
@@ -25,7 +25,7 @@ router.post('/profile', async (req, res) => {
 //read:
 router.get('/profile', async (req, res) => {
     try {
-        const profile = await Professional.findOne({ userId: req.user._id})
+        const profile = await Professional.findOne({userId: req.user._id})
         res.send(profile)
     } catch (error) {
         res.status(500).send(error.message)
@@ -36,32 +36,32 @@ router.get('/profile', async (req, res) => {
 router.put('/profile', async (req, res) => {
     
     try {
-        await Professional.updateOne({ userId: req.user._id }, req.body)
-        let profile = await Professional.findOne({ userId: req.user._id })
+        await Professional.updateOne({userId: req.user._id}, req.body)
+        let profile = await Professional.findOne({userId: req.user._id})
         res.send(profile)
     } catch (error) {
-        res.status(422).send(error.message)
+        res.status(500).send(error.message)
     }
 })
 
 //delete: 
 router.delete('/profile', async (req, res) => {
     try {
-        const profile = await Professional.deleteOne({ userId: req.user._id})
+        const profile = await Professional.deleteOne({userId: req.user._id})
         res.send(`${profile.deletedCount} profile deleted`)
     } catch (error) {
         res.status(500).send(error.message)
     }
 })
 
-//saved jobs routes
+//saved-jobs routes
 
 //read
 
 //delete
 router.delete('/saved-job/:id', async (req, res) => {
     try {
-        const savedJob = await Professional.deleteOne({ _id: req.params.id})
+        const savedJob = await Professional.deleteOne({_id: req.params.id})
         res.send(`${savedJob.deletedCount} saved job deleted`)
     } catch (error) {
         res.status(500).send(error.message)

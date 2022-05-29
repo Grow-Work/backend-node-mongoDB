@@ -15,8 +15,8 @@ describe('Creating records', () => {
         await testUser.save()
 
         const testProfile = new Professional({
-            professional_firstname: "Nunya",
-            professional_location: "Kansas CIty, KS, USA",
+            first_name: "Nunya",
+            location: "Kansas CIty, KS, USA",
             userId: testUser._id
             })
         await testProfile.save()
@@ -35,8 +35,8 @@ describe('Reading user profile records', () => {
         await testUser.save()
 
         testProfile = new Professional({
-            professional_firstname: "Nunya",
-            professional_location: "Kansas CIty, KS, USA",
+            first_name: "Test",
+            location: "Kansas CIty, KS, USA",
             userId: testUser._id
             })
         await testProfile.save()
@@ -49,7 +49,7 @@ describe('Reading user profile records', () => {
 
     it('12 - finds user profile by userId', async () => {
         let profile = await Professional.findOne({ userId: testUser._id })
-        assert(profile.professional_firstname === 'Nunya')
+        assert(profile.first_name === 'Test')
     })
 
 })
@@ -65,8 +65,8 @@ describe('Updating user profile records', () => {
         await testUser.save()
 
         testProfile = new Professional({
-            professional_firstname: "Nunya",
-            professional_location: "Kansas CIty, KS, USA",
+            first_name: "Test",
+            location: "Kansas CIty, KS, USA",
             userId: testUser._id
             })
         await testProfile.save()
@@ -75,7 +75,7 @@ describe('Updating user profile records', () => {
     it('13 - updates user profile by userId', async () => {
         let profile = await Professional.findOne({ userId: testUser._id })
         //upate record here
-        assert(profile.professional_firstname === 'Nunya')
+        assert(profile.first_name === 'Test')
     })
 
 })
@@ -93,8 +93,8 @@ describe('Deleting users records', () => {
         await testUser.save()
 
         testProfile = new Professional({
-            professional_firstname: "Nunya",
-            professional_location: "Kansas CIty, KS, USA",
+            first_name: "Nunya",
+            location: "Kansas CIty, KS, USA",
             userId: testUser._id
             })
         await testProfile.save()

@@ -6,13 +6,13 @@ const companyProfileSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
-    company_name: String,
-    company_location: String,
-    company_sector: String,
-    company_email: String,
-    company_phone: String,
-    company_description: String,
-    company_links: []
+    name: String,
+    location: String,
+    sector: String,
+    email: String,
+    phone: String,
+    description: String,
+    links: []
 })
 
 mongoose.model('Company_Profiles', companyProfileSchema)

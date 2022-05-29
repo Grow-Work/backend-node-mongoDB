@@ -14,8 +14,8 @@ describe('Creating records', () => {
         await testUser.save()
 
         const testCompanyProfile = new Company({
-            company_name: "Grow: Work",
-            company_location: "Kansas CIty, KS, USA",
+            ame: "Grow: Work",
+            location: "Kansas CIty, KS, USA",
             userId: testUser._id
             })
         await testCompanyProfile.save()
@@ -34,8 +34,8 @@ describe('Reading company profile records', () => {
         await testUser.save()
 
         testCompanyProfile = new Company({
-            company_name: "Grow: Work",
-            company_location: "Kansas CIty, KS, USA",
+            name: "Grow: Work",
+            location: "Kansas CIty, KS, USA",
             userId: testUser._id
             })
         await testCompanyProfile.save()
@@ -48,7 +48,7 @@ describe('Reading company profile records', () => {
 
     it('07 - finds user profile by userId', async () => {
         let profile = await Company.findOne({ userId: testUser._id })
-        assert(profile.company_name === 'Grow: Work')
+        assert(profile.name === 'Grow: Work')
     })
 
 })
@@ -64,8 +64,8 @@ describe('Updating company profile records', () => {
         await testUser.save()
 
         testCompanyProfile = new Company({
-            company_name: "Grow: Work",
-            company_location: "Kansas CIty, KS, USA",
+            name: "Grow: Work",
+            location: "Kansas CIty, KS, USA",
             userId: testUser._id
             })
         await testCompanyProfile.save()
@@ -74,7 +74,7 @@ describe('Updating company profile records', () => {
     it('08 - updates user profile by userId', async () => {
         let profile = await Company.findOne({ userId: testUser._id })
         //update here
-        assert(profile.company_name === 'Grow: Work')
+        assert(profile.name === 'Grow: Work')
     })
 
 })
