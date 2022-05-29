@@ -26,11 +26,11 @@ This repo is subject to large changes as this project evolves. To learn more abo
 
 • Npm run server - rup app with nodemon
 
-• Npm run test - to be added
+• Npm run test - runs tests with mocha
 
 • You'll need to create your own .env file with:
 
-MONGODB_URL={your_key_here}
+MONGODB_URL={your_key_here}<br>
 JWT_SECRET={your_secret_here}
 
 ## Base url
@@ -50,31 +50,31 @@ Base URL: https://grow-work.herokuapp.com/
 
 ### Professionals Profiles
 
-| data             | type   | required |
-| ---------------- | ------ | -------- |
-| user_id          | number | yes      |
-| person_firstname | string | no       |
-| person_lastname  | string | no       |
-| person_location  | string | no       |
-| person_email     | string | no       |
-| person_phone     | string | no       |
-| person_bio       | string | no       |
-| person_skills    | array  | no       |
-| person_links     | array  | no       |
-| saved_jobs       | array  | no       |
+| data       | type   | required |
+| ---------- | ------ | -------- |
+| user_id    | number | yes      |
+| first_name | string | no       |
+| last_name  | string | no       |
+| location   | string | no       |
+| email      | string | no       |
+| phone      | string | no       |
+| bio        | string | no       |
+| skills     | string | no       |
+| links      | array  | no       |
+| saved_jobs | array  | no       |
 
 ### Company Profiles
 
-| data                | type   | required |
-| ------------------- | ------ | -------- |
-| user_id             | number | yes      |
-| company_name        | string | no       |
-| company_location    | string | no       |
-| company_sector      | string | no       |
-| company_email       | string | no       |
-| company_phone       | string | no       |
-| company_description | string | no       |
-| company_links       | array  | no       |
+| data        | type   | required |
+| ----------- | ------ | -------- |
+| user_id     | number | yes      |
+| name        | string | no       |
+| location    | string | no       |
+| sector      | string | no       |
+| email       | string | no       |
+| phone       | string | no       |
+| description | string | no       |
+| links       | array  | no       |
 
 ### Job Object
 
@@ -85,8 +85,8 @@ Base URL: https://grow-work.herokuapp.com/
 | company          | string | no       |
 | description      | string | no       |
 | compensation     | string | no       |
-| required_skills  | array  | no       |
-| preferred_skills | array  | no       |
+| required_skills  | string | no       |
+| preferred_skills | string | no       |
 | location         | string | no       |
 | job_type         | string | no       |
 | apply_link       | string | no       |
