@@ -65,7 +65,7 @@ describe('Reading jobs records', () => {
 
 })
 
-describe('Reading jobs records', () => {
+describe('Updating jobs records', () => {
 
     beforeEach(async() => {
         testUser = new User({
@@ -90,10 +90,18 @@ describe('Reading jobs records', () => {
         await testJob2.save()
     })
 
-    it('19 - updates job by id', async () => {
+    it('19a - updates job by id using set n save', async () => {
+        testJob.set('title', 'testingupdate')
+        await testJob.save()
         let job = await Job.findOne({ _id: testJob._id })
-        //update here
-        assert(job.title === 'Full Stack Dev')
+        assert(job.title === 'testingupdate')
+    })
+
+    it('19b - updates job by id', async () => {
+        await Job.updateOne({ _id: testJob._id }, { title: 'testing update 2', company: "testing update 2.2"})
+        let job = await Job.findOne({ _id: testJob._id })
+        assert(job.title === 'testing update 2')
+        assert(job.company === 'testing update 2.2')
     })
 
 })

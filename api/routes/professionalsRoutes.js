@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-    const singleProfile = await Professional.find({ _id: req.params.id })
+    const singleProfile = await Professional.findOne({ _id: req.params.id })
     res.send(singleProfile)
 })
 

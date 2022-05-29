@@ -10,8 +10,8 @@ const jobSchema = new mongoose.Schema({
     company: String,
     description: String,
     compensation: String,
-    required_skills: [],
-    preferred_skills: [],
+    required_skills: String,
+    preferred_skills: String,
     location: String,
     job_type: String,
     apply_link: String

@@ -72,7 +72,7 @@ describe('Updating user profile records', () => {
         await testProfile.save()
     })
 
-    it('13 - finds user profile by userId', async () => {
+    it('13 - updates user profile by userId', async () => {
         let profile = await Professional.findOne({ userId: testUser._id })
         //upate record here
         assert(profile.professional_firstname === 'Nunya')

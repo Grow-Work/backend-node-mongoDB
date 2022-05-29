@@ -10,23 +10,23 @@ router.use(requireAuth)
 
 //create:
 router.post('/profile', async (req, res) => {
-    const {company_name, company_location, company_sector, company_email, company_phone, company_description, company_job_listings, company_links} = req.body
+    const reqBody = {...req.body, userId: req.user._id}
 
     try {
-        const userProfile = new Company({ company_name, company_location, company_sector, company_email, company_phone, company_description, company_job_listings, company_links, userId: req.user._id})
+        const profile = new Company(reqBody)
 
-        await userProfile.save()
-        res.send(userProfile)
+        await profile.save()
+        res.send(profile)
     } catch (error) {
-        res.status(422).send(error.message)
+        res.status(500).send(error.message)
     }
 })
 
 //read:
 router.get('/profile', async (req, res) => {
     try {
-        const companyProfile = await Company.find({ userId: req.user._id})
-        res.send(companyProfile)
+        const profile = await Company.findOne({ userId: req.user._id})
+        res.send(profile)
     } catch (error) {
         res.status(500).send(error.message)
     }
@@ -34,22 +34,21 @@ router.get('/profile', async (req, res) => {
 
 //update:
 router.put('/profile', async (req, res) => {
-    const {company_name, company_location, company_sector, company_email, company_phone, company_description, company_job_listings, company_links} = req.body
 
     try {
-        const companyProfile = await Company.find({ userId: req.user._id})
-        //update profile
-        res.send(companyProfile)
+        await Company.updateOne({ userId: req.user._id }, req.body)
+        let profile = await Company.findOne({ userId: req.user._id })
+        res.send(profile)
     } catch (error) {
-        res.status(500).send(error.message)
+        res.status(422).send(error.message)
     }
 })
 
 //delete:
-router.delete('/profile/:id', async (req, res) => {
+router.delete('/profile', async (req, res) => {
     try {
-        const companyProfile = await Company.deleteOne({ _id: req.params.id})
-        res.send("Profile Deleted")
+        const profile = await Company.deleteOne({ userId: req.user._id})
+        res.send(`${profile.deletedCount} profile deleted`)
     } catch (error) {
         res.status(500).send(error.message)
     }
@@ -59,49 +58,47 @@ router.delete('/profile/:id', async (req, res) => {
 
 //create:
 router.post('/job-listings', async (req, res) => {
-    const { title, company, description, compensation, location, required_skills, preferred_skills, job_type, apply_link } = req.body
+    const reqBody = {...req.body, userId: req.user._id}
 
     try {
-        const jobListing = new Job({ title, company, description, compensation, location, required_skills, preferred_skills, job_type, apply_link, userId: req.user._id })
+        const jobListing = new Job(reqBody)
 
         await jobListing.save()
         res.send(jobListing)
     } catch (error) {
-        res.status(422).send(error.message)
+        res.status(500).send(error.message)
     }
 })
 
 //read
 
 router.get('/job-listings', async (req, res) => {
-    const companyJobPostings = await Job.find({ userId: req.user._id })
-    res.send(companyJobPostings)
+    const jobListing = await Job.find({ userId: req.user._id })
+    res.send(jobListing)
 })
 
 router.get('/job-listings/:id', async (req, res) => {
-    const singleJobPost = await Job.find({ _id: req.params.id })
-    res.send(singleJobPost)
+    const jobListing = await Job.findOne({ _id: req.params.id })
+    res.send(jobListing)
 })
 
 //update
 router.put('/job-listings/:id', async (req, res) => {
-    const { title, company, description, compensation, location, required_skills, preferred_skills, job_type, apply_link } = req.body
 
     try {
-        // const jobListing = new Job({ title, company, description, compensation, location, required_skills, preferred_skills, job_type, apply_link, userId: req.user._id })
-
-        //update data
-        //res.send(jobListing)
+        await Job.updateOne({ _id: req.params.id }, req.body)
+        let jobListing = await Job.findOne({ _id: req.params.id })
+        res.send(jobListing)
     } catch (error) {
-        res.status(422).send(error.message)
+        res.status(500).send(error.message)
     }
 })
 
 router.delete('/job-listings/:id', async (req, res) => {
     
     try {
-        const companyProfile = await Company.deleteOne({ _id: req.params.id})
-        res.send("Job Deleted")
+        const jobListing = await Job.deleteOne({ _id: req.params.id})
+        res.send(`${jobListing.deletedCount} job listing deleted`)
     } catch (error) {
         res.status(500).send(error.message)
     }

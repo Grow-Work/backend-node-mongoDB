@@ -48,6 +48,7 @@ describe('Updating users records', () => {
 
     it('03 - updates user by id', async () => {
         let user = await User.findOne({ _id: testUser._id })
+        //update record here
         assert(user.email === 'test@test.com')
     })
 

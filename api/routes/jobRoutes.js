@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-    const singleJobPost = await Job.find({ _id: req.params.id })
+    const singleJobPost = await Job.findOne({ _id: req.params.id })
     res.send(singleJobPost)
 })
 

@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-    const singleProfile = await Company.find({ _id: req.params.id })
+    const singleProfile = await Company.findOne({ _id: req.params.id })
     res.send(singleProfile)
 })
 

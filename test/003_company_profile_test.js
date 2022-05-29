@@ -73,6 +73,7 @@ describe('Updating company profile records', () => {
 
     it('08 - updates user profile by userId', async () => {
         let profile = await Company.findOne({ userId: testUser._id })
+        //update here
         assert(profile.company_name === 'Grow: Work')
     })
 
