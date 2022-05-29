@@ -2,16 +2,21 @@ const router = require("express").Router();
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const User = mongoose.model('User')
+const secret = process.env.JWT_SECRET
 
 router.post('/signup', async (req, res) => {
-    const { email, password } = req.body
+    const {email, password, account_type} = req.body
+
+    if (!email || !password || !account_type) {
+        return res.status(422).send({error: 'email and password and account type are required'})
+    }
 
     try {
-        const user = new User({ email, password })
+        const user = new User({email, password, account_type})
         await user.save()
 
-        const token = jwt.sign({ userId: user._id }, 'shh')
-        res.send({ token })
+        const token = jwt.sign({userId: user._id}, secret)
+        res.send({token, account_type})
     } catch (err) {
         return res.status(422).send(err.message)
     }
@@ -19,23 +24,23 @@ router.post('/signup', async (req, res) => {
 })
 
 router.post('/signin', async (req, res) => {
-    const { email, password } = req.body
+    const {email, password, account_type} = req.body
 
     if (!email || !password) {
-        return res.status(422).send({ error: 'provide email and password' })
+        return res.status(422).send({error: 'provide email and password'})
     }
 
-    const user = await User.findOne({ email })
+    const user = await User.findOne({email})
     if (!user) {
-        return res.status(404).send({ error: 'not found' })
+        return res.status(404).send({error: 'not found'})
     }
 
     try {
         await user.comparePassword(password)
-        const token = jwt.sign({ userId: user._id }, 'shh')
-        res.send({ token })
+        const token = jwt.sign({userId: user._id}, secret)
+        res.send({ token, account_type })
     } catch(err) {
-        return res.status(401).send({ error: 'invalid' })
+        return res.status(401).send({error: 'invalid'})
     }
 })
 
