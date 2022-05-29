@@ -145,3 +145,5 @@ Base URL: https://grow-work.herokuapp.com/
 | PUT    | `/account/professional/profile`       | yes            | Returns the user's newly updated profile   |
 | DELETE | `/account/professional/profile`       | yes            | Deletes the user's profile                 |
 | DELETE | `/account/professional/saved-job/:id` | yes            | Deletes the user's saved job listing       |
+
+
