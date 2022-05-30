@@ -5,6 +5,8 @@ const requireAuth = require('../middleware/requireAuth')
 
 router.use(requireAuth)
 
+//this is a test
+
 router.get('/', async (req, res) => {
     const profiles = await Professional.find({})
     res.send(profiles)
