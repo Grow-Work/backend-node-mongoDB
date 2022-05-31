@@ -9,10 +9,10 @@ router.use(requireAuth)
 
 //create:
 router.post('/profile', async (req, res) => {
-    const profile = {...req.body, userId: req.user._id}
+    const reqBody = {...req.body, userId: req.user._id}
 
     try {
-        const profile = new Professional(profile)
+        const profile = new Professional(reqBody)
 
         await profile.save()
         res.send(profile)
