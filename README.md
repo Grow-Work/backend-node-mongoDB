@@ -1,6 +1,25 @@
 # Grow: Work - Backend
 
-This repo is subject to large changes as this project evolves. To learn more about the over all project please visit the repo listed below.
+To learn more about the over all project please visit the repos listed below.
+
+## Quicklinks
+
+* [Related Repos](#related-repos)
+* [Tech Stack](#tech-stack)
+* [Base URL](#base-url)
+* [Data Structures](#data-structures)
+    * [Users](#users)
+    * [Newb Profiles](#newb-profiles)
+    * [Company Profiles](#company-profiles)
+    * [Jobs](#jobs)
+* [End Points](#end-points)
+    * [Authentication Routes](#authentication-routes)
+    * [Newbs Routes](#newbs-routes)
+    * [Companies Routes](#companies-routes)
+    * [Job Listing Routes](#job-listing-routes)
+    * [Company Account Routes](#company-account-routes)
+    * [Newb Account Routes](#newb-account-routes)
+* [Instalation and Starting](#instalation-and-starting)
 
 ## Related Repos
 
@@ -8,7 +27,7 @@ This repo is subject to large changes as this project evolves. To learn more abo
 
 [Desktop Web App](https://github.com/Grow-Work/frontend-react-desktop)
 
-## Tech Stack - subject to change
+## Tech Stack
 
 - MongoDB / Mongoose
 
@@ -17,21 +36,6 @@ This repo is subject to large changes as this project evolves. To learn more abo
 - Json webtokens
 
 - Tests with Mocha
-
-## Instalation and Starting
-
-• Npm i - install dependencies
-
-• Npm start - run app with node
-
-• Npm run server - rup app with nodemon
-
-• Npm run test - runs tests with mocha
-
-• You'll need to create your own .env file with:
-
-MONGODB_URL={your_key_here}<br>
-JWT_SECRET={your_secret_here}
 
 ## Base url
 
@@ -48,7 +52,7 @@ Base URL: https://grow-work.herokuapp.com/
 | password     | string | yes      |
 | account_type | string | yes      |
 
-### Professionals Profiles
+### Newb Profiles
 
 | data       | type   | required |
 | ---------- | ------ | -------- |
@@ -76,7 +80,7 @@ Base URL: https://grow-work.herokuapp.com/
 | description | string | no       |
 | links       | array  | no       |
 
-### Job Object
+### Jobs
 
 | data             | type   | required |
 | ---------------- | ------ | -------- |
@@ -100,7 +104,7 @@ Base URL: https://grow-work.herokuapp.com/
 | POST   | `/auth/signup` | no             | Registers new user and returns token       |
 | POST   | `/auth/signin` | no             | Signs in registered user and returns token |
 
-### Professionals Routes
+### Newbs Routes
 
 | Method | Endpoint             | Token Required | Description                                 |
 | ------ | -------------------- | -------------- | ------------------------------------------- |
@@ -122,7 +126,7 @@ Base URL: https://grow-work.herokuapp.com/
 | GET    | `/job-listing/:id`      | yes            | Returns single job listing by id         |
 | POST   | `/job-listing/:id/save` | yes            | Saves single job listing to user profile |
 
-### Account Company Routes
+### Company Account Routes
 
 | Method | Endpoint                            | Token Required | Description                                |
 | ------ | ----------------------------------- | -------------- | ------------------------------------------ |
@@ -136,7 +140,7 @@ Base URL: https://grow-work.herokuapp.com/
 | PUT    | `/account/company/job-listings/:id` | yes            | Returns user's newly updated job listing   |
 | DELETE | `/account/company/job-listings/:id` | yes            | Deletes the user's job listing             |
 
-### Account Professional Routes
+### Newb Account Routes
 
 | Method | Endpoint                              | Token Required | Description                                |
 | ------ | ------------------------------------- | -------------- | ------------------------------------------ |
@@ -146,4 +150,17 @@ Base URL: https://grow-work.herokuapp.com/
 | DELETE | `/account/professional/profile`       | yes            | Deletes the user's profile                 |
 | DELETE | `/account/professional/saved-job/:id` | yes            | Deletes the user's saved job listing       |
 
+## Instalation and Starting
 
+• Npm i - install dependencies
+
+• Npm start - run app with node
+
+• Npm run server - rup app with nodemon
+
+• Npm run test - runs tests with mocha
+
+• You'll need to create your own .env file with:
+
+MONGODB_URL={your_key_here}<br>
+JWT_SECRET={your_secret_here}
