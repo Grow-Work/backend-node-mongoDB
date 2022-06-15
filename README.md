@@ -17,8 +17,7 @@ To learn more about the over all project please visit the repos listed below.
     * [Newbs Routes](#newbs-routes)
     * [Companies Routes](#companies-routes)
     * [Job Listing Routes](#job-listing-routes)
-    * [Company Account Routes](#company-account-routes)
-    * [Newb Account Routes](#newb-account-routes)
+    * [Account Routes](#account-routes)
 * [Instalation and Starting](#instalation-and-starting)
 
 ## Related Repos
@@ -126,29 +125,20 @@ Base URL: https://grow-work.herokuapp.com/
 | GET    | `/job-listing/:id`      | yes            | Returns single job listing by id         |
 | POST   | `/job-listing/:id/save` | yes            | Saves single job listing to user profile |
 
-### Company Account Routes
+### Account Routes
 
-| Method | Endpoint                            | Token Required | Description                                |
-| ------ | ----------------------------------- | -------------- | ------------------------------------------ |
-| POST   | `/account/company/profile`          | yes            | Returns newly added company profile        |
-| GET    | `/account/company/profile`          | yes            | Returns the current user's company profile |
-| PUT    | `/account/company/profile`          | yes            | Returns the user's newly updated profile   |
-| DELETE | `/account/company/profile`          | yes            | Deletes the user's profile                 |
-| POST   | `/account/company/job-listings`     | yes            | Returns newly added job listing            |
-| GET    | `/account/company/job-listings`     | yes            | Returns the current user's job listings    |
-| GET    | `/account/company/job-listings/:id` | yes            | Returns single job listing by current user |
-| PUT    | `/account/company/job-listings/:id` | yes            | Returns user's newly updated job listing   |
-| DELETE | `/account/company/job-listings/:id` | yes            | Deletes the user's job listing             |
-
-### Newb Account Routes
-
-| Method | Endpoint                              | Token Required | Description                                |
-| ------ | ------------------------------------- | -------------- | ------------------------------------------ |
-| POST   | `/account/professional/profile`       | yes            | Returns newly added 'professional' profile |
-| GET    | `/account/professional/profile`       | yes            | Returns the current user's profile         |
-| PUT    | `/account/professional/profile`       | yes            | Returns the user's newly updated profile   |
-| DELETE | `/account/professional/profile`       | yes            | Deletes the user's profile                 |
-| DELETE | `/account/professional/saved-job/:id` | yes            | Deletes the user's saved job listing       |
+| Method | Endpoint                    | Token Required | Description                                |
+| ------ | -------------------------------------------- | ------------------------------------------ |
+| POST   | `/account/profile`          | yes            | Returns newly added company profile        |
+| GET    | `/account/profile`          | yes            | Returns the current user's company profile |
+| PUT    | `/account/profile`          | yes            | Returns the user's newly updated profile   |
+| DELETE | `/account/profile`          | yes            | Deletes the user's profile                 |
+| POST   | `/account/job-listings`     | yes            | Returns newly added job listing            |
+| GET    | `/account/job-listings`     | yes            | Returns the current user's job listings    |
+| GET    | `/account/job-listings/:id` | yes            | Returns single job listing by current user |
+| PUT    | `/account/job-listings/:id` | yes            | Returns user's newly updated job listing   |
+| DELETE | `/account/job-listings/:id` | yes            | Deletes the user's job listing             |
+| DELETE | `/account/saved-job/:id`    | yes            | Deletes the user's saved job listing       |
 
 ## Instalation and Starting
 
