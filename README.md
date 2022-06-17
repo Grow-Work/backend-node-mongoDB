@@ -128,7 +128,7 @@ Base URL: https://grow-work.herokuapp.com/
 ### Account Routes
 
 | Method | Endpoint                    | Token Required | Description                                |
-| ------ | -------------------------------------------- | ------------------------------------------ |
+| ------ | ----------------------------|--------------- | ------------------------------------------ |
 | POST   | `/account/profile`          | yes            | Returns newly added company profile        |
 | GET    | `/account/profile`          | yes            | Returns the current user's company profile |
 | PUT    | `/account/profile`          | yes            | Returns the user's newly updated profile   |
