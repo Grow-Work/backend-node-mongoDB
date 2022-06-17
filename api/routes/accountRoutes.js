@@ -91,13 +91,14 @@ router.delete('/profile', async (req, res) => {
 
 //create:
 router.post('/job-listings', async (req, res) => {
-    const accountType = req.user.account_type
+    
     const reqBody = {...req.body, userId: req.user._id}
 
     try {
-        const jobListing = new Job(reqBody)
-
-        await jobListing.save()
+        const newJobListing = new Job(reqBody)
+        await newJobListing.save()
+        //sending back the new array of job listings
+        const jobListing = await Job.find({userId: req.user._id})
         res.send(jobListing)
     } catch (error) {
         res.status(500).send(error.message)
@@ -107,24 +108,33 @@ router.post('/job-listings', async (req, res) => {
 //read
 
 router.get('/job-listings', async (req, res) => {
-    const accountType = req.user.account_type
-    const jobListing = await Job.find({userId: req.user._id})
-    res.send(jobListing)
+ 
+    try {
+        const jobListing = await Job.find({userId: req.user._id})
+        res.send(jobListing)
+    } catch (error) {
+        res.status(500).send(error.message)
+    }
+
 })
 
 router.get('/job-listings/:id', async (req, res) => {
-    const accountType = req.user.account_type
-    const jobListing = await Job.findOne({_id: req.params.id})
-    res.send(jobListing)
+
+    try {
+        const jobListing = await Job.findOne({_id: req.params.id})
+        res.send(jobListing)
+    } catch (error) {
+        res.status(500).send(error.message)
+    }
 })
 
 //update
 router.put('/job-listings/:id', async (req, res) => {
-    const accountType = req.user.account_type
 
     try {
         await Job.updateOne({_id: req.params.id}, req.body)
-        let jobListing = await Job.findOne({_id: req.params.id})
+        //sending back the newly updated array of job listings
+        let jobListing = await Job.find({userId: req.user._id})
         res.send(jobListing)
     } catch (error) {
         res.status(500).send(error.message)
@@ -132,11 +142,10 @@ router.put('/job-listings/:id', async (req, res) => {
 })
 
 router.delete('/job-listings/:id', async (req, res) => {
-    const accountType = req.user.account_type
     
     try {
-        const jobListing = await Job.deleteOne({_id: req.params.id})
-        res.send(`${jobListing.deletedCount} job listing deleted`)
+        await Job.deleteOne({_id: req.params.id})
+        res.send(`Job listing deleted.`)
     } catch (error) {
         res.status(500).send(error.message)
     }

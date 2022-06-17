@@ -6,13 +6,23 @@ const requireAuth = require('../middleware/requireAuth')
 router.use(requireAuth)
 
 router.get('/', async (req, res) => {
-    const jobs = await Job.find({})
-    res.send(jobs)
+
+    try {
+        const jobs = await Job.find({})
+        res.send(jobs)
+    } catch (error) {
+        res.status(500).send(error.message)
+    }
 })
 
 router.get('/:id', async (req, res) => {
-    const job = await Job.findOne({_id: req.params.id})
-    res.send(job)
+
+    try {
+        const job = await Job.findOne({_id: req.params.id})
+        res.send(job)
+    } catch (error) {
+        res.status(500).send(error.message)
+    }
 })
 
 module.exports = router

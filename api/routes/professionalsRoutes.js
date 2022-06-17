@@ -8,13 +8,23 @@ router.use(requireAuth)
 //this is a test
 
 router.get('/', async (req, res) => {
-    const profiles = await Professional.find({})
-    res.send(profiles)
+
+    try {
+        const profiles = await Professional.find({})
+        res.send(profiles)
+    } catch (error) {
+        res.status(500).send(error.message)
+    }
 })
 
 router.get('/:id', async (req, res) => {
-    const profile = await Professional.findOne({_id: req.params.id})
-    res.send(profile)
+
+    try {
+        const profile = await Professional.findOne({_id: req.params.id})
+        res.send(profile)
+    } catch (error) {
+        res.status(500).send(error.message)
+    }
 })
 
 module.exports = router
