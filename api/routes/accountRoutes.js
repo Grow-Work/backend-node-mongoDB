@@ -155,6 +155,11 @@ router.delete('/job-listings/:id', async (req, res) => {
 
 //read
 
+router.get('/saved-job/:id', async (req, res) => {
+    
+    //do stuff here
+})
+
 //delete
 router.delete('/saved-job/:id', async (req, res) => {
     try {
