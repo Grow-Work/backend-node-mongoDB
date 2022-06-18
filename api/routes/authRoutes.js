@@ -24,7 +24,7 @@ router.post('/signup', async (req, res) => {
 })
 
 router.post('/signin', async (req, res) => {
-    const {email, password, account_type} = req.body
+    const {email, password} = req.body
 
     if (!email || !password) {
         return res.status(422).send({error: 'provide email and password'})
@@ -38,6 +38,7 @@ router.post('/signin', async (req, res) => {
     try {
         await user.comparePassword(password)
         const token = jwt.sign({userId: user._id}, secret)
+        const account_type = user.account_type
         res.send({ token, account_type })
     } catch(err) {
         return res.status(401).send({error: 'invalid'})
