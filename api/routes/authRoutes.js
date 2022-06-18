@@ -41,7 +41,7 @@ router.post('/signin', async (req, res) => {
         const account_type = user.account_type
         res.send({ token, account_type })
     } catch(err) {
-        return res.status(401).send({error: 'invalid'})
+        return res.status(401).send(err.message)
     }
 })
 
