@@ -27,7 +27,7 @@ server.use((err, req, res, next) => { // eslint-disable-line
 });
 
 server.get('/', (req, res) => {
-    res.send(`Welcome to my API!!`)
+    res.send(`Welcome to my mongoDB and Rest API!!`)
 })
 
 module.exports = server;
